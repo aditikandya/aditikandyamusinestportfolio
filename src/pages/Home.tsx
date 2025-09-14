@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Play, Pause, ArrowRight, Star, Users, Award, Calendar, Download, Heart, Share2, 
-         Music2, Headphones, Mic2, Guitar, Drum, Piano, Volume2, Zap, TrendingUp, 
-         Clock, CheckCircle, Quote, Globe, Camera, Video, Sparkles, BookOpen } from 'lucide-react';
+         Music2, Headphones, Mic2, Guitar, Drum, Piano, Volume2, TrendingUp, 
+         CheckCircle, Quote, Globe, Camera, Video, Sparkles, BookOpen, ChevronLeft, ChevronRight, Instagram, Youtube } from 'lucide-react';
 import heroStudio from '../assets/hero-studio.jpg';
 import artistPortrait from '../assets/artist-portrait.jpg';
 import musicEquipment from '../assets/music-equipment.jpg';
@@ -14,106 +14,160 @@ import nightStudio from '../assets/night-studio.jpg';
 
 const Home = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTrack, setCurrentTrack] = useState(0);
-  const [activeGenre, setActiveGenre] = useState('electronic');
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  const tracks = [
-    { title: "Midnight Dreams", duration: "3:24", plays: "2.3M", genre: "Electronic", mood: "Chill" },
-    { title: "Urban Rhythms", duration: "4:12", plays: "1.8M", genre: "Hip-Hop", mood: "Energetic" },
-    { title: "Digital Sunset", duration: "3:45", plays: "3.1M", genre: "Ambient", mood: "Peaceful" },
-    { title: "Neon Nights", duration: "4:32", plays: "1.5M", genre: "Synthwave", mood: "Nostalgic" },
-    { title: "Bass Drop", duration: "3:58", plays: "2.7M", genre: "EDM", mood: "Intense" },
-    { title: "Acoustic Soul", duration: "5:21", plays: "1.2M", genre: "Folk", mood: "Emotional" }
+  const carouselSlides = [
+    {
+      image: heroStudio,
+      title: "Welcome to MusiNest",
+      subtitle: "Where Music Dreams Take Flight",
+      description: "Discover the joy of learning piano and vocals in a nurturing environment",
+      buttonText: "Start Your Journey",
+      buttonLink: "/courses",
+      overlay: "dark"
+    },
+    {
+      image: livePerformance,
+      title: "Live Performance Excellence",
+      subtitle: "From Practice to Performance",
+      description: "Build confidence and showcase your musical talents on stage",
+      buttonText: "Watch Performances",
+      buttonLink: "/teacher",
+      overlay: "light"
+    },
+    {
+      image: studentsLearning,
+      title: "Personalized Learning",
+      subtitle: "One-on-One Attention",
+      description: "Get individualized instruction tailored to your learning style and goals",
+      buttonText: "Book Trial Lesson",
+      buttonLink: "/contact",
+      overlay: "dark"
+    },
+    {
+      image: musicEquipment,
+      title: "Professional Setup",
+      subtitle: "Quality Instruments & Materials",
+      description: "Learn with the best equipment and comprehensive study materials",
+      buttonText: "View Setup",
+      buttonLink: "/teacher",
+      overlay: "light"
+    },
+    {
+      image: instrumentsCollection,
+      title: "Multiple Genres",
+      subtitle: "From Classical to Contemporary",
+      description: "Explore Western classical, Bollywood, Rock, Pop, and Indian classical music",
+      buttonText: "Explore Genres",
+      buttonLink: "/lessons",
+      overlay: "dark"
+    }
   ];
+
+
 
   const stats = [
-    { icon: Users, label: "Students Taught", value: "500+" },
-    { icon: Star, label: "Song Releases", value: "50+" },
-    { icon: Award, label: "Awards Won", value: "12" },
-    { icon: Calendar, label: "Years Experience", value: "8+" },
-    { icon: Globe, label: "Countries Reached", value: "25+" },
-    { icon: Headphones, label: "Total Streams", value: "10M+" },
+    { icon: Users, label: "Students Taught", value: "50+" },
+    { icon: Star, label: "Examinations Passed", value: "100+" },
+    { icon: Award, label: "ABRSM Grade 8", value: "Piano" },
+    { icon: Calendar, label: "Years Experience", value: "4+" },
+    { icon: Globe, label: "Music Genres", value: "5+" },
+    { icon: Headphones, label: "Classical Training", value: "Indian" },
   ];
 
-  const genres = [
-    { id: 'electronic', name: 'Electronic', icon: Zap, description: 'Cutting-edge electronic productions with innovative sound design' },
-    { id: 'hiphop', name: 'Hip-Hop', icon: Mic2, description: 'Modern hip-hop beats with classic influences and fresh perspectives' },
-    { id: 'ambient', name: 'Ambient', icon: Volume2, description: 'Atmospheric soundscapes perfect for meditation and relaxation' },
-    { id: 'pop', name: 'Pop', icon: Star, description: 'Radio-ready pop productions with catchy hooks and polished sound' },
-    { id: 'rock', name: 'Rock', icon: Guitar, description: 'Heavy guitars and driving rhythms with modern production techniques' },
-    { id: 'jazz', name: 'Jazz', icon: Piano, description: 'Contemporary jazz fusion with electronic elements and improvisation' }
-  ];
+
 
   const testimonials = [
     {
-      name: "Sarah Chen",
-      role: "Independent Artist",
+      name: "Priya Sharma",
+      role: "Piano Student",
       image: studentsLearning,
-      quote: "SoundScape transformed my bedroom recordings into professional-quality tracks. The attention to detail is incredible!"
+      quote: "Aditi's teaching method is incredible! I went from complete beginner to ABRSM Grade 3 in just 2 years. Her patience and expertise are unmatched!"
     },
     {
-      name: "Marcus Rodriguez",
-      role: "Music Producer",
+      name: "Arjun Patel",
+      role: "Vocal Student",
       image: nightStudio,
-      quote: "The course structure is perfect. I went from complete beginner to producing for local artists in just 6 months."
+      quote: "Learning Indian classical vocals from Aditi has been transformative. She makes complex ragas accessible and enjoyable for beginners."
     },
     {
-      name: "Emma Thompson",
-      role: "Singer-Songwriter",
+      name: "Zara Khan",
+      role: "Bollywood Piano Student",
       image: mixingConsole,
-      quote: "Not just technical skills, but creative guidance that helped me find my unique sound. Absolutely worth every penny!"
+      quote: "Aditi's Bollywood piano lessons are amazing! She breaks down complex songs into simple steps that anyone can follow."
     }
   ];
 
   const equipment = [
-    { name: "Professional Mixing Console", description: "32-channel analog console for authentic warmth", icon: Volume2 },
-    { name: "Vintage Synthesizers", description: "Collection of classic and modern synths", icon: Piano },
-    { name: "Premium Microphones", description: "Industry-standard mics for every application", icon: Mic2 },
-    { name: "Acoustic Treatment", description: "Professionally treated recording environment", icon: Headphones }
+    { name: "Professional Piano", description: "Quality piano for classical and contemporary music learning", icon: Piano },
+    { name: "Learning Materials", description: "Comprehensive resources for ABRSM, Trinity, and RSL examinations", icon: BookOpen },
+    { name: "Vocal Training Setup", description: "Indian classical vocal training and contemporary singing techniques", icon: Mic2 },
+    { name: "Music Theory Resources", description: "Comprehensive music theory and composition materials", icon: Headphones }
   ];
 
   const recentNews = [
     {
-      title: "New Course: Advanced Mixing Techniques",
+      title: "New Course: ABRSM Piano Preparation",
       date: "January 15, 2024",
       category: "Education",
       image: mixingConsole,
-      preview: "Dive deep into professional mixing with our latest comprehensive course..."
+      preview: "Comprehensive preparation course for ABRSM piano examinations from Grade 1 to Grade 8..."
     },
     {
-      title: "Collaboration with Rising Artist Luna",
+      title: "Bollywood Piano Workshop Success",
       date: "January 10, 2024",
-      category: "Music",
+      category: "Workshop",
       image: instrumentsCollection,
-      preview: "Excited to announce my collaboration on Luna's upcoming EP..."
+      preview: "Our recent Bollywood piano workshop was a huge success with 25+ students learning popular songs..."
     },
     {
-      title: "Studio Tour: Behind the Scenes",
+      title: "Indian Classical Vocal Training",
       date: "January 5, 2024",
-      category: "Video",
+      category: "Vocal Training",
       image: nightStudio,
-      preview: "Take an exclusive look inside the SoundScape studio..."
+      preview: "New batch starting for Indian classical vocal training with focus on ragas and traditional compositions..."
     }
   ];
+
+  // Carousel navigation functions
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % carouselSlides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + carouselSlides.length) % carouselSlides.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
+  // Auto-advance carousel
+  useEffect(() => {
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   const upcomingEvents = [
     {
       date: "Feb 15",
-      title: "Live Production Workshop",
-      location: "SoundScape Studio",
+      title: "Piano Masterclass - ABRSM Preparation",
+      location: "MusiNest Studio",
       type: "Workshop",
       price: "$85"
     },
     {
       date: "Feb 22",
-      title: "Music Industry Panel",
+      title: "Indian Classical Vocal Workshop",
       location: "Online Event",
       type: "Panel",
       price: "Free"
     },
     {
       date: "Mar 8",
-      title: "Beat Making Masterclass",
+      title: "Bollywood Piano Workshop",
       location: "Community Center",
       type: "Masterclass",
       price: "$120"
@@ -121,10 +175,10 @@ const Home = () => {
   ];
 
   const achievements = [
-    { title: "Grammy Nomination", year: "2021", category: "Best Engineered Album" },
-    { title: "Producer of the Year", year: "2022", category: "Independent Music Awards" },
-    { title: "Platinum Certification", year: "2023", category: "Single: 'Digital Dreams'" },
-    { title: "Rolling Stone Feature", year: "2022", category: "Producer to Watch" }
+    { title: "ABRSM Grade 8", year: "2023", category: "Piano Certification" },
+    { title: "KM Music Conservatory", year: "2022", category: "Composition Course" },
+    { title: "Sound Engineering", year: "2022", category: "Intensive Course" },
+    { title: "Indian Classical Vocal", year: "2021", category: "Training Completed" }
   ];
 
   useEffect(() => {
@@ -145,67 +199,140 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-gradient-hero">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img 
-            src={heroStudio} 
-            alt="Music Studio" 
-            className="w-full h-full object-cover opacity-30"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-background/80 to-primary/20"></div>
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight">
-              Creating <span className="text-primary">Musical</span>
-              <br />
-              <span className="text-primary">Masterpieces</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-              Professional music producer, artist, and educator helping you discover your unique sound and master the art of music creation.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-              <Link 
-                to="/courses"
-                className="group bg-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 ease-spring hover:shadow-glow hover:scale-105 flex items-center space-x-2"
-              >
-                <span>Explore Courses</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </Link>
-              <button 
-                onClick={() => setIsPlaying(!isPlaying)}
-                className="group bg-secondary text-secondary-foreground px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 ease-spring hover:shadow-soft hover:scale-105 flex items-center space-x-2"
-              >
-                {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
-                <span>Listen to Music</span>
-              </button>
+      {/* Hero Carousel Section */}
+      <section className="relative h-screen bg-gradient-hero overflow-hidden">
+        {/* Carousel Container */}
+        <div className="relative w-full h-full">
+          {carouselSlides.map((slide, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                index === currentSlide ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              {/* Background Image */}
+              <div className="absolute inset-0">
+                <img
+                  src={slide.image}
+                  alt={slide.title}
+                  className="w-full h-full object-cover"
+                />
+                {/* Overlay */}
+                <div className={`absolute inset-0 ${
+                  slide.overlay === 'dark' 
+                    ? 'bg-black/50' 
+                    : 'bg-white/20'
+                }`}></div>
+              </div>
+              
+              {/* Content */}
+              <div className="relative z-10 flex items-center justify-center h-full">
+                <div className="text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <h1 className="text-4xl md:text-6xl font-bold mb-4 animate-fade-in">
+                    {slide.title}
+                  </h1>
+                  <h2 className="text-2xl md:text-4xl font-semibold mb-6 text-primary-foreground animate-slide-up">
+                    {slide.subtitle}
+                  </h2>
+                  <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto animate-slide-up">
+                    {slide.description}
+                  </p>
+                  <Link
+                    to={slide.buttonLink}
+                    className="inline-flex items-center space-x-2 bg-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-glow transition-all duration-300 ease-smooth hover:scale-105 animate-fade-in"
+                  >
+                    <span>{slide.buttonText}</span>
+                    <ArrowRight className="w-5 h-5" />
+                  </Link>
+                </div>
+              </div>
             </div>
+          ))}
+          
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+          
+          {/* Dots Indicator */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-3">
+            {carouselSlides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentSlide 
+                    ? 'bg-primary scale-125' 
+                    : 'bg-white/50 hover:bg-white/75'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
 
-            {/* Quick Action Buttons */}
-            <div className="flex flex-wrap justify-center gap-4">
-              <button className="flex items-center space-x-2 bg-card/80 backdrop-blur-sm text-card-foreground px-4 py-2 rounded-lg hover:bg-card transition-all duration-200">
-                <Download className="w-4 h-4" />
-                <span>Free Samples</span>
-              </button>
-              <button className="flex items-center space-x-2 bg-card/80 backdrop-blur-sm text-card-foreground px-4 py-2 rounded-lg hover:bg-card transition-all duration-200">
-                <Video className="w-4 h-4" />
-                <span>Watch Tutorials</span>
-              </button>
-              <button className="flex items-center space-x-2 bg-card/80 backdrop-blur-sm text-card-foreground px-4 py-2 rounded-lg hover:bg-card transition-all duration-200">
-                <Calendar className="w-4 h-4" />
-                <span>Book Session</span>
-              </button>
+      {/* Taglines and Social Media Section */}
+      <section className="py-16 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-6">Welcome to my musical nest — let's create something beautiful together! 🎶</h2>
+            <div className="flex flex-wrap justify-center gap-4 mb-8">
+              <span className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">We don't do off-key</span>
+              <span className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">No boring notes allowed</span>
+              <span className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">Music, served hot</span>
+              <span className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">Slay every note</span>
+              <span className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">Hatching harmony, one note at a time</span>
+            </div>
+            
+            {/* Skills Showcase */}
+            <div className="mt-12">
+              <h3 className="text-xl font-semibold text-foreground mb-6">Musical Skills & Expertise</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="text-center p-4 bg-card rounded-lg border border-border hover:shadow-soft transition-all duration-300">
+                  <Piano className="w-8 h-8 text-primary mx-auto mb-2" />
+                  <p className="text-sm font-medium text-foreground">Piano</p>
+                  <p className="text-xs text-muted-foreground">ABRSM Grade 8</p>
+                </div>
+                <div className="text-center p-4 bg-card rounded-lg border border-border hover:shadow-soft transition-all duration-300">
+                  <Mic2 className="w-8 h-8 text-primary mx-auto mb-2" />
+                  <p className="text-sm font-medium text-foreground">Vocal</p>
+                  <p className="text-xs text-muted-foreground">Indian Classical</p>
+                </div>
+                <div className="text-center p-4 bg-card rounded-lg border border-border hover:shadow-soft transition-all duration-300">
+                  <Music2 className="w-8 h-8 text-primary mx-auto mb-2" />
+                  <p className="text-sm font-medium text-foreground">Composition</p>
+                  <p className="text-xs text-muted-foreground">KM Conservatory</p>
+                </div>
+                <div className="text-center p-4 bg-card rounded-lg border border-border hover:shadow-soft transition-all duration-300">
+                  <Headphones className="w-8 h-8 text-primary mx-auto mb-2" />
+                  <p className="text-sm font-medium text-foreground">Sound Engineering</p>
+                  <p className="text-xs text-muted-foreground">Intensive Course</p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Social Media Buttons */}
+            <div className="flex justify-center space-x-6 mt-8">
+              <a href="#" className="group flex items-center space-x-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 ease-smooth hover:scale-105">
+                <Instagram className="w-5 h-5" />
+                <span>Follow on Instagram</span>
+              </a>
+              <a href="#" className="group flex items-center space-x-2 bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 ease-smooth hover:scale-105">
+                <Youtube className="w-5 h-5" />
+                <span>Subscribe on YouTube</span>
+              </a>
             </div>
           </div>
         </div>
-
-        {/* Floating elements for visual interest */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-primary/10 rounded-full animate-float"></div>
-        <div className="absolute bottom-20 right-10 w-16 h-16 bg-secondary/20 rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/3 right-20 w-12 h-12 bg-accent/10 rounded-full animate-float" style={{ animationDelay: '0.5s' }}></div>
       </section>
 
       {/* Enhanced Stats Section */}
@@ -213,7 +340,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-secondary-foreground mb-4">By the Numbers</h2>
-            <p className="text-xl text-muted-foreground">The impact of SoundScape Academy</p>
+            <p className="text-xl text-muted-foreground">The impact of MusiNest by Aditi</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
             {stats.map((stat, index) => (
@@ -234,107 +361,16 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Featured Tracks Section - Enhanced */}
-      <section className="py-20 bg-card">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 animate-slide-up">
-            <h2 className="text-4xl font-bold text-card-foreground mb-4">Latest Tracks</h2>
-            <p className="text-xl text-muted-foreground">Discover my newest musical creations</p>
-          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {tracks.map((track, index) => (
-              <div 
-                key={index}
-                className="group bg-gradient-card p-6 rounded-lg shadow-soft hover:shadow-glow transition-all duration-300 ease-smooth hover:-translate-y-2 animate-scale-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-card-foreground">{track.title}</h3>
-                    <div className="flex items-center space-x-2 mt-1">
-                      <span className="text-xs bg-primary/20 text-primary px-2 py-1 rounded">{track.genre}</span>
-                      <span className="text-xs bg-secondary text-secondary-foreground px-2 py-1 rounded">{track.mood}</span>
-                    </div>
-                  </div>
-                  <button 
-                    onClick={() => setCurrentTrack(index)}
-                    className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-200 ease-spring"
-                  >
-                    <Play className="w-5 h-5 ml-1" />
-                  </button>
-                </div>
-                <div className="flex justify-between items-center text-muted-foreground">
-                  <span className="flex items-center space-x-1">
-                    <Clock className="w-3 h-3" />
-                    <span>{track.duration}</span>
-                  </span>
-                  <span className="flex items-center space-x-1">
-                    <Heart className="w-3 h-3" />
-                    <span>{track.plays}</span>
-                  </span>
-                </div>
-                <div className="flex justify-between items-center mt-4">
-                  <button className="flex items-center space-x-1 text-muted-foreground hover:text-primary transition-colors">
-                    <Download className="w-4 h-4" />
-                    <span className="text-sm">Download</span>
-                  </button>
-                  <button className="flex items-center space-x-1 text-muted-foreground hover:text-primary transition-colors">
-                    <Share2 className="w-4 h-4" />
-                    <span className="text-sm">Share</span>
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Music Genres Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-foreground mb-4">Musical Styles & Genres</h2>
-            <p className="text-xl text-muted-foreground">Versatility across multiple musical landscapes</p>
-          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {genres.map((genre, index) => (
-              <div 
-                key={genre.id}
-                onClick={() => setActiveGenre(genre.id)}
-                className={`group cursor-pointer p-8 rounded-lg transition-all duration-300 ease-smooth hover:-translate-y-2 animate-scale-in ${
-                  activeGenre === genre.id 
-                    ? 'bg-primary text-primary-foreground shadow-glow' 
-                    : 'bg-card text-card-foreground shadow-soft hover:shadow-glow'
-                }`}
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="flex items-center mb-4">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center mr-4 ${
-                    activeGenre === genre.id ? 'bg-primary-foreground text-primary' : 'bg-primary text-primary-foreground'
-                  }`}>
-                    <genre.icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-xl font-semibold">{genre.name}</h3>
-                </div>
-                <p className={`leading-relaxed ${
-                  activeGenre === genre.id ? 'text-primary-foreground/90' : 'text-muted-foreground'
-                }`}>
-                  {genre.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Student Testimonials */}
       <section className="py-20 bg-secondary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-secondary-foreground mb-4">Student Success Stories</h2>
-            <p className="text-xl text-muted-foreground">Real results from real students</p>
+            <p className="text-xl text-muted-foreground">Real results from Aditi's students</p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">
@@ -368,9 +404,9 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-slide-up">
-              <h2 className="text-4xl font-bold text-card-foreground mb-6">World-Class Studio Equipment</h2>
+              <h2 className="text-4xl font-bold text-card-foreground mb-6">Quality Learning Environment</h2>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                Experience music production with professional-grade equipment that delivers pristine sound quality and creative possibilities.
+                Experience music learning with quality instruments and comprehensive learning materials that support your musical journey.
               </p>
               
               <div className="space-y-6">
@@ -414,7 +450,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-foreground mb-4">Latest News & Updates</h2>
-            <p className="text-xl text-muted-foreground">Stay updated with the latest from SoundScape</p>
+            <p className="text-xl text-muted-foreground">Stay updated with the latest from MusiNest</p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">
@@ -454,7 +490,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-secondary-foreground mb-4">Upcoming Events</h2>
-            <p className="text-xl text-muted-foreground">Join me at these upcoming events and workshops</p>
+            <p className="text-xl text-muted-foreground">Join Aditi at these upcoming events and workshops</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -493,7 +529,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-card-foreground mb-4">Recognition & Achievements</h2>
-            <p className="text-xl text-muted-foreground">Milestones in my musical journey</p>
+            <p className="text-xl text-muted-foreground">Milestones in Aditi's musical journey</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -513,31 +549,78 @@ const Home = () => {
         </div>
       </section>
 
-      {/* About Preview Section */}
+      {/* Live Performance Section */}
       <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-slide-up">
-              <h2 className="text-4xl font-bold text-foreground mb-6">Meet the Artist</h2>
+              <h2 className="text-4xl font-bold text-foreground mb-6">Live Performance Excellence</h2>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                With over 8 years of experience in music production and education, I've helped hundreds of students discover their musical potential. From bedroom producers to chart-topping artists, my teaching method adapts to every skill level.
+                Experience the magic of live music performances and build confidence on stage. From intimate recitals to grand performances, discover your inner performer.
               </p>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                My passion lies in bridging the gap between traditional music theory and modern digital production techniques, creating a learning experience that's both comprehensive and inspiring.
+                Our students regularly participate in concerts, competitions, and community events, showcasing their musical growth and talent.
               </p>
               
               <div className="flex flex-wrap gap-4 mb-8">
                 <span className="flex items-center space-x-2 bg-secondary px-4 py-2 rounded-lg">
                   <CheckCircle className="w-4 h-4 text-primary" />
-                  <span className="text-secondary-foreground">Grammy Nominated</span>
+                  <span className="text-secondary-foreground">Regular Concerts</span>
                 </span>
                 <span className="flex items-center space-x-2 bg-secondary px-4 py-2 rounded-lg">
                   <CheckCircle className="w-4 h-4 text-primary" />
-                  <span className="text-secondary-foreground">500+ Students</span>
+                  <span className="text-secondary-foreground">Competition Prep</span>
                 </span>
                 <span className="flex items-center space-x-2 bg-secondary px-4 py-2 rounded-lg">
                   <CheckCircle className="w-4 h-4 text-primary" />
-                  <span className="text-secondary-foreground">8+ Years Experience</span>
+                  <span className="text-secondary-foreground">Stage Confidence</span>
+                </span>
+              </div>
+              
+              <Link 
+                to="/teacher"
+                className="inline-flex items-center space-x-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:shadow-glow transition-all duration-300 ease-smooth hover:scale-105"
+              >
+                <span>View Performances</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+            <div className="animate-scale-in">
+              <img 
+                src={livePerformance} 
+                alt="Live Music Performance" 
+                className="w-full rounded-lg shadow-soft hover:shadow-glow transition-shadow duration-300"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Preview Section */}
+      <section className="py-20 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="animate-slide-up">
+              <h2 className="text-4xl font-bold text-foreground mb-6">Meet Aditi</h2>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                Hi, I'm Aditi Kandya — a pianist, classical vocalist, and passionate music educator. With years of training and a deep love for music, I have completed ABRSM Grade 8 in Piano and am also a trained Indian classical vocalist.
+              </p>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                My learning journey has taken me beyond performance and teaching — I have attended a 21-day summer course in Composition at KM Music Conservatory, Chennai, and completed a 2-week intensive course in Sound Engineering.
+              </p>
+              
+              <div className="flex flex-wrap gap-4 mb-8">
+                <span className="flex items-center space-x-2 bg-secondary px-4 py-2 rounded-lg">
+                  <CheckCircle className="w-4 h-4 text-primary" />
+                  <span className="text-secondary-foreground">ABRSM Grade 8</span>
+                </span>
+                <span className="flex items-center space-x-2 bg-secondary px-4 py-2 rounded-lg">
+                  <CheckCircle className="w-4 h-4 text-primary" />
+                  <span className="text-secondary-foreground">50+ Students</span>
+                </span>
+                <span className="flex items-center space-x-2 bg-secondary px-4 py-2 rounded-lg">
+                  <CheckCircle className="w-4 h-4 text-primary" />
+                  <span className="text-secondary-foreground">4+ Years Experience</span>
                 </span>
               </div>
               
@@ -545,17 +628,67 @@ const Home = () => {
                 to="/about"
                 className="inline-flex items-center space-x-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:shadow-glow transition-all duration-300 ease-smooth hover:scale-105"
               >
-                <span>Learn More About Me</span>
+                <span>Learn More About Aditi</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
             <div className="animate-scale-in">
               <img 
                 src={artistPortrait} 
-                alt="Artist Portrait" 
+                alt="Aditi Kandya - Pianist & Music Educator" 
                 className="w-full rounded-lg shadow-soft hover:shadow-glow transition-shadow duration-300"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pre-recorded Courses Section */}
+      <section className="py-20 bg-secondary">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-secondary-foreground mb-4">Pre-recorded Courses</h2>
+            <p className="text-xl text-muted-foreground mb-8">Learn at your own pace with comprehensive video lessons</p>
+            <Link 
+              to="/lessons"
+              className="inline-flex items-center space-x-2 bg-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-glow transition-all duration-300 ease-smooth hover:scale-105"
+            >
+              <span>Browse All Lessons</span>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-card p-8 rounded-lg shadow-soft hover:shadow-glow transition-all duration-300 ease-smooth hover:-translate-y-2 text-center">
+              <BookOpen className="w-16 h-16 text-primary mx-auto mb-6" />
+              <h3 className="text-2xl font-bold text-card-foreground mb-4">Beginner Friendly</h3>
+              <p className="text-muted-foreground mb-6">Start from scratch with step-by-step guidance through every fundamental concept.</p>
+              <div className="text-primary font-bold text-lg">6 Courses Available</div>
+            </div>
+            
+            <div className="bg-card p-8 rounded-lg shadow-soft hover:shadow-glow transition-all duration-300 ease-smooth hover:-translate-y-2 text-center">
+              <TrendingUp className="w-16 h-16 text-primary mx-auto mb-6" />
+              <h3 className="text-2xl font-bold text-card-foreground mb-4">Advanced Techniques</h3>
+              <p className="text-muted-foreground mb-6">Master professional piano techniques and advanced classical repertoire.</p>
+              <div className="text-primary font-bold text-lg">50+ Hours Content</div>
+            </div>
+            
+            <div className="bg-card p-8 rounded-lg shadow-soft hover:shadow-glow transition-all duration-300 ease-smooth hover:-translate-y-2 text-center">
+              <Users className="w-16 h-16 text-primary mx-auto mb-6" />
+              <h3 className="text-2xl font-bold text-card-foreground mb-4">Community Support</h3>
+              <p className="text-muted-foreground mb-6">Join a thriving community of music students and enthusiasts.</p>
+              <div className="text-primary font-bold text-lg">50+ Students</div>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <Link 
+              to="/lessons"
+              className="inline-flex items-center space-x-2 bg-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-glow transition-all duration-300 ease-smooth hover:scale-105"
+            >
+              <span>Explore All Lessons</span>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
           </div>
         </div>
       </section>
@@ -579,15 +712,15 @@ const Home = () => {
             <div className="bg-card p-8 rounded-lg shadow-soft hover:shadow-glow transition-all duration-300 ease-smooth hover:-translate-y-2 text-center">
               <TrendingUp className="w-16 h-16 text-primary mx-auto mb-6" />
               <h3 className="text-2xl font-bold text-card-foreground mb-4">Advanced Techniques</h3>
-              <p className="text-muted-foreground mb-6">Master professional production methods used by industry leaders.</p>
+              <p className="text-muted-foreground mb-6">Master professional piano techniques and advanced classical repertoire.</p>
               <div className="text-primary font-bold text-lg">50+ Hours Content</div>
             </div>
             
             <div className="bg-card p-8 rounded-lg shadow-soft hover:shadow-glow transition-all duration-300 ease-smooth hover:-translate-y-2 text-center">
               <Users className="w-16 h-16 text-primary mx-auto mb-6" />
               <h3 className="text-2xl font-bold text-card-foreground mb-4">Community Support</h3>
-              <p className="text-muted-foreground mb-6">Join a thriving community of musicians and producers.</p>
-              <div className="text-primary font-bold text-lg">1,200+ Students</div>
+              <p className="text-muted-foreground mb-6">Join a thriving community of music students and enthusiasts.</p>
+              <div className="text-primary font-bold text-lg">50+ Students</div>
             </div>
           </div>
 
@@ -603,13 +736,68 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Solo One-on-One Lessons Section */}
+      <section className="py-20 bg-card">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="animate-slide-up">
+              <h2 className="text-4xl font-bold text-card-foreground mb-6">Solo One-on-One Lessons</h2>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                Get personalized attention with private lessons tailored to your learning style, goals, and schedule. Every lesson is designed specifically for you.
+              </p>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                Whether you're a complete beginner or an advanced student, our one-on-one approach ensures you progress at your own pace with focused instruction.
+              </p>
+              
+              <div className="flex flex-wrap gap-4 mb-8">
+                <span className="flex items-center space-x-2 bg-background px-4 py-2 rounded-lg">
+                  <CheckCircle className="w-4 h-4 text-primary" />
+                  <span className="text-card-foreground">Personalized Curriculum</span>
+                </span>
+                <span className="flex items-center space-x-2 bg-background px-4 py-2 rounded-lg">
+                  <CheckCircle className="w-4 h-4 text-primary" />
+                  <span className="text-card-foreground">Flexible Scheduling</span>
+                </span>
+                <span className="flex items-center space-x-2 bg-background px-4 py-2 rounded-lg">
+                  <CheckCircle className="w-4 h-4 text-primary" />
+                  <span className="text-card-foreground">Progress Tracking</span>
+                </span>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link 
+                  to="/contact"
+                  className="inline-flex items-center space-x-2 bg-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-glow transition-all duration-300 ease-smooth hover:scale-105"
+                >
+                  <span>Book a Free Trial</span>
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+                <Link 
+                  to="/courses"
+                  className="inline-flex items-center space-x-2 border-2 border-primary text-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 ease-smooth"
+                >
+                  <span>View Lesson Plans</span>
+                </Link>
+              </div>
+            </div>
+            <div className="animate-scale-in">
+              <img 
+                src={studentsLearning} 
+                alt="One-on-One Music Lesson" 
+                className="w-full rounded-lg shadow-soft hover:shadow-glow transition-shadow duration-300"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Newsletter Signup */}
       <section className="py-20 bg-card">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Sparkles className="w-16 h-16 text-primary mx-auto mb-6" />
           <h2 className="text-4xl font-bold text-card-foreground mb-6">Stay In The Loop</h2>
           <p className="text-xl text-muted-foreground mb-8">
-            Get exclusive access to new tracks, tutorials, and course updates delivered straight to your inbox.
+            Get exclusive access to new lessons, workshops, and course updates delivered straight to your inbox.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
@@ -624,7 +812,7 @@ const Home = () => {
           </div>
           
           <p className="text-sm text-muted-foreground mt-4">
-            Join 5,000+ musicians. No spam, unsubscribe anytime.
+            Join 50+ students. No spam, unsubscribe anytime.
           </p>
         </div>
       </section>
@@ -634,7 +822,7 @@ const Home = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold mb-6 animate-fade-in">Ready to Start Your Musical Journey?</h2>
           <p className="text-xl mb-8 opacity-90 animate-slide-up">
-            Join hundreds of students who have transformed their passion into professional skills.
+            Join 50+ students who have transformed their passion into musical skills.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 

@@ -5,6 +5,9 @@ import { Music, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Youtube, Hear
 const Footer = () => {
   const quickLinks = [
     { name: 'Home', path: '/' },
+    { name: 'Workshops', path: '/workshops' },
+    { name: 'Lessons', path: '/lessons' },
+    { name: 'Meet Teacher', path: '/teacher' },
     { name: 'About Us', path: '/about' },
     { name: 'Courses', path: '/courses' },
     { name: 'Contact', path: '/contact' },
@@ -12,9 +15,9 @@ const Footer = () => {
 
   const courses = [
     { name: 'Piano Fundamentals', path: '/courses' },
-    { name: 'Guitar Mastery', path: '/courses' },
-    { name: 'Vocal Performance', path: '/courses' },
-    { name: 'Music Production', path: '/courses' },
+    { name: 'Bollywood Piano', path: '/lessons' },
+    { name: 'Indian Classical Vocal', path: '/lessons' },
+    { name: 'ABRSM Preparation', path: '/workshops' },
   ];
 
   const socialLinks = [
@@ -37,11 +40,11 @@ const Footer = () => {
                   <Music className="w-6 h-6 text-[#FFF4F4]" />
                 </div>
                 <span className="text-2xl font-bold bg-gradient-to-r from-[#565449] to-[#D8CFBC] bg-clip-text text-transparent">
-                  SoundScape
+                  MusiNest
                 </span>
               </Link>
               <p className="text-[#D8CFBC] mb-6 leading-relaxed">
-                Empowering musicians of all levels to discover their unique voice and achieve their musical dreams through world-class instruction and cutting-edge facilities.
+                Welcome to my musical nest — let's create something beautiful together! A warm, encouraging space where every student feels seen, heard, and supported in their unique musical journey.
               </p>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
@@ -72,24 +75,24 @@ const Footer = () => {
                     </Link>
                   </li>
                 ))}
-                <li>
-                  <a
-                    href="#"
-                    className="text-[#D8CFBC] hover:text-[#FFF4F4] transition-colors duration-200 flex items-center group"
-                  >
-                    <span className="w-0 group-hover:w-2 h-0.5 bg-gradient-to-r from-[#565449] to-[#D8CFBC] mr-0 group-hover:mr-2 transition-all duration-200"></span>
-                    Events
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-[#D8CFBC] hover:text-[#FFF4F4] transition-colors duration-200 flex items-center group"
-                  >
-                    <span className="w-0 group-hover:w-2 h-0.5 bg-gradient-to-r from-[#565449] to-[#D8CFBC] mr-0 group-hover:mr-2 transition-all duration-200"></span>
-                    Blog
-                  </a>
-                </li>
+                                 <li>
+                   <Link
+                     to="/workshops"
+                     className="text-[#D8CFBC] hover:text-[#FFF4F4] transition-colors duration-200 flex items-center group"
+                   >
+                     <span className="w-0 group-hover:w-2 h-0.5 bg-gradient-to-r from-[#565449] to-[#D8CFBC] mr-0 group-hover:mr-2 transition-all duration-200"></span>
+                     Workshops
+                   </Link>
+                 </li>
+                 <li>
+                   <Link
+                     to="/lessons"
+                     className="text-[#D8CFBC] hover:text-[#FFF4F4] transition-colors duration-200 flex items-center group"
+                   >
+                     <span className="w-0 group-hover:w-2 h-0.5 bg-gradient-to-r from-[#565449] to-[#D8CFBC] mr-0 group-hover:mr-2 transition-all duration-200"></span>
+                     Lessons
+                   </Link>
+                 </li>
               </ul>
             </div>
 
@@ -123,33 +126,33 @@ const Footer = () => {
             <div>
               <h4 className="text-lg font-semibold text-[#D8CFBC] mb-6">Get in Touch</h4>
               <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <MapPin className="w-5 h-5 text-[#565449] mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="text-[#D8CFBC]">123 Music Street</p>
-                    <p className="text-[#D8CFBC]">Downtown District</p>
-                    <p className="text-[#D8CFBC]">City, ST 12345</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Phone className="w-5 h-5 text-[#565449] flex-shrink-0" />
-                  <a href="tel:+15551234567" className="text-[#D8CFBC] hover:text-[#FFF4F4] transition-colors duration-200">
-                    +1 (555) 123-4567
-                  </a>
-                </div>
+                                 <div className="flex items-start space-x-3">
+                   <MapPin className="w-5 h-5 text-[#565449] mt-1 flex-shrink-0" />
+                   <div>
+                     <p className="text-[#D8CFBC]">MusiNest Studio</p>
+                     <p className="text-[#D8CFBC]">Music Education Center</p>
+                     <p className="text-[#D8CFBC]">Chennai, India</p>
+                   </div>
+                 </div>
+                                 <div className="flex items-center space-x-3">
+                   <Phone className="w-5 h-5 text-[#565449] flex-shrink-0" />
+                   <a href="tel:+919876543210" className="text-[#D8CFBC] hover:text-[#FFF4F4] transition-colors duration-200">
+                     +91 98765 43210
+                   </a>
+                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-[#565449] flex-shrink-0" />
-                  <a href="mailto:info@SoundScape.com" className="text-[#D8CFBC] hover:text-[#FFF4F4] transition-colors duration-200">
-                    info@SoundScape.com
+                  <a href="mailto:info@musinest.com" className="text-[#D8CFBC] hover:text-[#FFF4F4] transition-colors duration-200">
+                    info@musinest.com
                   </a>
                 </div>
               </div>
               
-              <div className="mt-6 p-4 bg-[#565449] rounded-xl">
-                <h5 className="text-[#D8CFBC] font-semibold mb-2">Office Hours</h5>
-                <p className="text-[#FFF4F4] text-sm">Mon-Fri: 9AM-9PM</p>
-                <p className="text-[#FFF4F4] text-sm">Sat-Sun: 10AM-6PM</p>
-              </div>
+                             <div className="mt-6 p-4 bg-[#565449] rounded-xl">
+                 <h5 className="text-[#D8CFBC] font-semibold mb-2">Teaching Hours</h5>
+                 <p className="text-[#FFF4F4] text-sm">Mon-Fri: 9AM-9PM</p>
+                 <p className="text-[#FFF4F4] text-sm">Sat-Sun: 10AM-6PM</p>
+               </div>
             </div>
           </div>
         </div>
@@ -161,13 +164,13 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
               <p className="text-[#D8CFBC] text-sm">
-                © 2025 SoundScape. All rights reserved.
+                © 2025 MusiNest by Aditi. All rights reserved.
               </p>
-              <div className="flex items-center space-x-1 text-[#D8CFBC] text-sm">
-                <span>Made with</span>
-                <Heart className="w-4 h-4 text-red-500 fill-current" />
-                <span>for music lovers</span>
-              </div>
+                             <div className="flex items-center space-x-1 text-[#D8CFBC] text-sm">
+                 <span>Made with</span>
+                 <Heart className="w-4 h-4 text-red-500 fill-current" />
+                 <span>for music students</span>
+               </div>
             </div>
             <div className="flex flex-wrap justify-center md:justify-end space-x-6 text-sm">
               <a href="#" className="text-[#D8CFBC] hover:text-[#FFF4F4] transition-colors duration-200">

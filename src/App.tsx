@@ -8,6 +8,11 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Courses from "./pages/Courses";
 import Contact from "./pages/Contact";
+import Workshops from "./pages/Workshops";
+import Lessons from "./pages/Lessons";
+import Teacher from "./pages/Teacher";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
 
@@ -23,9 +28,14 @@ const App = () => (
         <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/workshops" element={<Workshops />} />
+          <Route path="/lessons" element={<Lessons />} />
+          <Route path="/teacher" element={<Teacher />} />
           <Route path="/about" element={<About />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
